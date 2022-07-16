@@ -1,6 +1,10 @@
 from lambler import Lambler
+from lambler.content import LocalFile
 
-import api
+import endpoint
 
-handle = Lambler()
-handle.handle(api.handler)
+lambler = Lambler()
+
+lambler.handle(endpoint.handler)
+
+lambler.use_content(LocalFile())

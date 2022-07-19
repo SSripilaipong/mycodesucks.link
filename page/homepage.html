@@ -63,67 +63,32 @@
       พร้อมกับ video
       และบทความ ที่อาจจะช่วยแก้ปัญหาแต่ละเรื่องได้เอาไว้ให้แล้ว</p>
     <div id="signal-list">
-      <div class="card">
-        <div class="card-header" id="heading1">
-          <h5 class="mb-0">
-            <button class="signal-header btn btn-link collapsed" data-toggle="collapse" data-target="#collapse1"
-                    aria-expanded="false"
-                    aria-controls="collapse1">
-              เปลี่ยนโค้ดนิดหน่อย ที่อื่นพัง ต้องแก้ตามอีก 10 ที่ เหนื่อย!
-            </button>
-          </h5>
-        </div>
-        <div id="collapse1" class="collapse" aria-labelledby="heading1" data-parent="#signal-list">
-          <div class="card-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
-            officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3
-            wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-            Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-            excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt
-            you probably haven't heard of them accusamus labore sustainable VHS.
+      {% for signal in signals %}
+        <div class="card">
+          <div class="card-header" id="heading{{ loop.index }}">
+            <h5 class="mb-0">
+              <button class="signal-header btn btn-link collapsed" data-toggle="collapse"
+                      data-target="#collapse{{ loop.index }}"
+                      aria-expanded="false" aria-controls="collapse{{ loop.index }}">
+                {{ signal.title }}
+              </button>
+            </h5>
+          </div>
+          <div id="collapse{{ loop.index }}" class="collapse" aria-labelledby="heading{{ loop.index }}"
+               data-parent="#signal-list">
+            <div class="card-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
+              moon
+              officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3
+              wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+              Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
+              excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
+              nesciunt
+              you probably haven't heard of them accusamus labore sustainable VHS.
+            </div>
           </div>
         </div>
-      </div>
-      <div class="card">
-        <div class="card-header" id="heading2">
-          <h5 class="mb-0">
-            <button class="signal-header btn btn-link collapsed" data-toggle="collapse" data-target="#collapse2"
-                    aria-expanded="false" aria-controls="collapse2">
-              มีฟังก์ชันที่ซับซ้อนมาก ๆ ไม่มีใครเข้าใจ คนเขียนลาออกไปแล้ว 😭
-            </button>
-          </h5>
-        </div>
-        <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#signal-list">
-          <div class="card-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
-            officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3
-            wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-            Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-            excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt
-            you probably haven't heard of them accusamus labore sustainable VHS.
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header" id="heading3">
-          <h5 class="mb-0">
-            <button class="signal-header btn btn-link collapsed" data-toggle="collapse" data-target="#collapse3"
-                    aria-expanded="false" aria-controls="collapse3">
-              ฝั่ง business พูดอย่างนึง ในโค้ดเขียนอีกอย่าง งง!
-            </button>
-          </h5>
-        </div>
-        <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#signal-list">
-          <div class="card-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
-            officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3
-            wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-            Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-            excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt
-            you probably haven't heard of them accusamus labore sustainable VHS.
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
   <div class="d-none d-sm-none d-lg-inline" style="width: 12.5%">&nbsp;</div>

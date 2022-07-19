@@ -1,1 +1,2 @@
-lambler==0.0.3
+lambler==0.0.4
+Jinja2==3.1.2

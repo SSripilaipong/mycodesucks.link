@@ -8,8 +8,16 @@ from lambler.template import TemplateBase
 
 
 @dataclass
+class AdviceForSignal:
+    title: str
+    short_description: str
+    link: str
+
+
+@dataclass
 class Signal:
     title: str
+    advice_list: List[AdviceForSignal]
 
 
 class HomepageTemplate(TemplateBase):

@@ -1,8 +1,10 @@
 from http import HTTPStatus
 
-from lambler.http import HttpApi, HtmlResponse
+from lambler.http import HttpApi, HtmlResponse, Param
 from lambler.template import Template
 
+from content.advice import advice_mapper
+from page.advice import AdvicePage
 from page.homepage import HomepageTemplate, Signal, AdviceForSignal
 
 handler = HttpApi()
@@ -11,25 +13,24 @@ handler = HttpApi()
 @handler.get("")
 def homepage(template: HomepageTemplate = Template()):
     signals = [
-        Signal(title="เปลี่ยนโค้ดนิดหน่อย ที่อื่นพัง ต้องแก้ตามอีก 10 ที่ เหนื่อย!",
-               advice_list=[
-                   AdviceForSignal(
-                       title="โค้ดแต่ละส่วนเราผูกมัดกันเกินไปหรือเปล่า",
-                       short_description="ทำความเข้าใจแนวคิดเรื่องของ coupling และ cohesion จะช่วยให้เราออกแบบ class "
-                                         "ต่าง ๆ ของเราได้ดีขึ้น จะช่วยป้องกันผลกระทบของการแก้ไขโค้ดแต่ละส่วนได้",
-                       link="/advice/62d7ea5f5a58191ee7e59115-โค้ดแต่ละส่วนเราผูกมัดกันเกินไปหรือเปล่า",
-                   ),
-                   AdviceForSignal(
-                       title="ใช้ Modular Monolith แยกระบบใหญ่ออกเป็นระบบย่อย ๆ ตามส่วนงาน",
-                       short_description="abc",
-                       link="/advice/62d7e95a5a58191ee7e59114-ใช้_Modular_Monolith_แยกระบบใหญ่ออกเป็นระบบย่อย",
-                   ),
-                   AdviceForSignal(
-                       title="ใช้ Clean Architecture แยก domain logic ออกจากส่วนอื่น ๆ",
-                       short_description="abc",
-                       link="/advice/62d96a915a5819259704414e-ใช้_Clean_Architecture_แยก_domain_logic_ออกจากส่วนอื่น ๆ",
-                   ),
-               ]),
+        Signal(title="เปลี่ยนโค้ดนิดหน่อย ที่อื่นพัง ต้องแก้ตามอีก 10 ที่ เหนื่อย!", advice_list=[
+            AdviceForSignal(
+                title="โค้ดแต่ละส่วนเราผูกมัดกันเกินไปหรือเปล่า",
+                short_description="ทำความเข้าใจแนวคิดเรื่องของ coupling และ cohesion จะช่วยให้เราออกแบบ class "
+                                  "ต่าง ๆ ของเราได้ดีขึ้น จะช่วยป้องกันผลกระทบของการแก้ไขโค้ดแต่ละส่วนได้",
+                link="/advice/62d7ea5f5a58191ee7e59115-โค้ดแต่ละส่วนเราผูกมัดกันเกินไปหรือเปล่า",
+            ),
+            AdviceForSignal(
+                title="ใช้ Modular Monolith แยกระบบใหญ่ออกเป็นระบบย่อย ๆ ตามส่วนงาน",
+                short_description="abc",
+                link="/advice/62d7e95a5a58191ee7e59114-ใช้_Modular_Monolith_แยกระบบใหญ่ออกเป็นระบบย่อย",
+            ),
+            AdviceForSignal(
+                title="ใช้ Clean Architecture แยก domain logic ออกจากส่วนอื่น ๆ",
+                short_description="abc",
+                link="/advice/62d96a915a5819259704414e-ใช้_Clean_Architecture_แยก_domain_logic_ออกจากส่วนอื่น ๆ",
+            ),
+        ]),
         Signal(title="มีฟังก์ชันที่ซับซ้อนมาก ๆ ไม่มีใครเข้าใจ คนเขียนลาออกไปแล้ว 😭", advice_list=[
             AdviceForSignal(
                 title="สร้าง testcase ก่อน refactor ทุกครั้ง",
@@ -123,3 +124,9 @@ def homepage(template: HomepageTemplate = Template()):
         ]),
     ]
     return HtmlResponse(HTTPStatus.OK, template.render(signals=signals))
+
+
+@handler.get("/advice/{key}")
+def advice_page(key: str = Param("key"), template: AdvicePage = Template()):
+    id_, _ = key.split("-", maxsplit=1)
+    return HtmlResponse(HTTPStatus.OK, template.render(advice_mapper[id_]))

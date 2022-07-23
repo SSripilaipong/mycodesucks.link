@@ -13,7 +13,7 @@ class AdvicePage(TemplateBase):
 
     @classmethod
     def load(cls) -> 'AdvicePage':
-        return cls(Environment(loader=FileSystemLoader('page')).get_template("advice.html"))
+        return cls(Environment(loader=FileSystemLoader('page')).get_template("advice/advice.html"))
 
     def render(self, advice: Advice) -> str:
         content = [make_content(c) for c in advice.content]

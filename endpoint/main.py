@@ -3,7 +3,7 @@ from http import HTTPStatus
 from lambler.http import HttpApi, HtmlResponse, Param
 from lambler.template import Template
 
-from content.advice import advice_mapper, too_much_coupling, Advice
+from content.advice import advice_mapper, too_much_coupling, Advice, break_monolith_into_modules
 from page.advice import AdvicePage
 from page.homepage import HomepageTemplate, Signal, AdviceForSignal
 
@@ -20,11 +20,7 @@ def homepage(template: HomepageTemplate = Template()):
     signals = [
         Signal(title="เปลี่ยนโค้ดนิดหน่อย ที่อื่นพัง ต้องแก้ตามอีก 10 ที่ เหนื่อย!", advice_list=[
             _make_advice_for_signal(too_much_coupling),
-            AdviceForSignal(
-                title="ใช้ Modular Monolith แยกระบบใหญ่ออกเป็นระบบย่อย ๆ ตามส่วนงาน",
-                short_description="abc",
-                link="/advice/62d7e95a5a58191ee7e59114-ใช้_Modular_Monolith_แยกระบบใหญ่ออกเป็นระบบย่อย",
-            ),
+            _make_advice_for_signal(break_monolith_into_modules),
             AdviceForSignal(
                 title="ใช้ Clean Architecture แยก domain logic ออกจากส่วนอื่น ๆ",
                 short_description="abc",

@@ -1,8 +1,12 @@
 {% extends "template.html" %}
+{% block style %}
+  {{ super() }}
+  {% include "advice.css" %}
+{% endblock %}
 {% block content %}
   {{ super() }}
   <h1 class="color-primary">{{ title }}</h1>
-  {% for paragraph in paragraphs %}
-    <p class="color-secondary">{{ paragraph }}</p>
+  {% for content in content_list %}
+    <br>{{ content }}
   {% endfor %}
 {% endblock %}

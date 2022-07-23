@@ -1,0 +1,11 @@
+.video-content {
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+@media only screen and (max-width: 992px) {
+    .video-content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

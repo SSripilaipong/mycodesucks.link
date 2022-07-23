@@ -17,7 +17,7 @@
       <div class="card">
         <div class="card-header" id="heading{{ loop.index }}">
           <h5 class="mb-0">
-            <button class="content-header btn btn-link collapsed" data-toggle="collapse"
+            <button class="content-header text-primary btn btn-link collapsed" data-toggle="collapse"
                     data-target="#collapse{{ loop.index }}"
                     aria-expanded="false" aria-controls="collapse{{ loop.index }}">
               {{ signal.title }}
@@ -29,7 +29,8 @@
           <div class="card-body">
             <ul class="list-group list-group-flush">
               {% for advice in signal.advice_list %}
-                <li class="list-group-item"><a href="{{ advice.link }}">▸ {{ advice.title }}</a>
+                <li class="list-group-item"><a style="color: coral"
+                                               href="{{ advice.link }}">▸ {{ advice.title }}</a>
                   <div class="color-secondary">{{ advice.short_description }}</div>
                 </li>
               {% endfor %}

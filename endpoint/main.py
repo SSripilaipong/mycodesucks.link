@@ -5,7 +5,7 @@ from lambler.template import Template
 
 from content.advice import advice_mapper, too_much_coupling, Advice, break_monolith_into_modules
 from page.advice import AdvicePage
-from page.homepage import HomepageTemplate, Signal, AdviceForSignal
+from page.home import HomeTemplate, Signal, AdviceForSignal
 
 handler = HttpApi()
 
@@ -16,7 +16,7 @@ def _make_advice_for_signal(advice: Advice) -> AdviceForSignal:
 
 
 @handler.get("")
-def homepage(template: HomepageTemplate = Template()):
+def home(template: HomeTemplate = Template()):
     signals = [
         Signal(title="เปลี่ยนโค้ดนิดหน่อย ที่อื่นพัง ต้องแก้ตามอีก 10 ที่ เหนื่อย!", advice_list=[
             _make_advice_for_signal(too_much_coupling),

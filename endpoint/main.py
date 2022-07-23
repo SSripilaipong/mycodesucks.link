@@ -3,7 +3,8 @@ from http import HTTPStatus
 from lambler.http import HttpApi, HtmlResponse, Param
 from lambler.template import Template
 
-from content.advice import advice_mapper, too_much_coupling, Advice, break_monolith_into_modules
+from content.advice import advice_mapper, too_much_coupling, Advice, separate_layers_with_clean, \
+    break_monolith_into_modules
 from page.advice import AdvicePage
 from page.home import HomeTemplate, Signal, AdviceForSignal
 
@@ -21,11 +22,7 @@ def home(template: HomeTemplate = Template()):
         Signal(title="เปลี่ยนโค้ดนิดหน่อย ที่อื่นพัง ต้องแก้ตามอีก 10 ที่ เหนื่อย!", advice_list=[
             _make_advice_for_signal(too_much_coupling),
             _make_advice_for_signal(break_monolith_into_modules),
-            AdviceForSignal(
-                title="ใช้ Clean Architecture แยก domain logic ออกจากส่วนอื่น ๆ",
-                short_description="abc",
-                link="/advice/62d96a915a5819259704414e-ใช้_Clean_Architecture_แยก_domain_logic_ออกจากส่วนอื่น ๆ",
-            ),
+            _make_advice_for_signal(separate_layers_with_clean),
         ]),
         Signal(title="มีฟังก์ชันที่ซับซ้อนมาก ๆ ไม่มีใครเข้าใจ คนเขียนลาออกไปแล้ว 😭", advice_list=[
             AdviceForSignal(

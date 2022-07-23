@@ -3,23 +3,23 @@ from http import HTTPStatus
 from lambler.http import HttpApi, HtmlResponse, Param
 from lambler.template import Template
 
-from content.advice import advice_mapper
+from content.advice import advice_mapper, too_much_coupling, Advice
 from page.advice import AdvicePage
 from page.homepage import HomepageTemplate, Signal, AdviceForSignal
 
 handler = HttpApi()
 
 
+def _make_advice_for_signal(advice: Advice) -> AdviceForSignal:
+    return AdviceForSignal(title=advice.title, short_description=advice.short_description,
+                           link=f"/advice/{advice.id_}-{advice.title_url}")
+
+
 @handler.get("")
 def homepage(template: HomepageTemplate = Template()):
     signals = [
         Signal(title="เปลี่ยนโค้ดนิดหน่อย ที่อื่นพัง ต้องแก้ตามอีก 10 ที่ เหนื่อย!", advice_list=[
-            AdviceForSignal(
-                title="โค้ดแต่ละส่วนเราผูกมัดกันเกินไปหรือเปล่า",
-                short_description="ทำความเข้าใจแนวคิดเรื่องของ coupling และ cohesion จะช่วยให้เราออกแบบ class "
-                                  "ต่าง ๆ ของเราได้ดีขึ้น จะช่วยป้องกันผลกระทบของการแก้ไขโค้ดแต่ละส่วนได้",
-                link="/advice/62d7ea5f5a58191ee7e59115-โค้ดแต่ละส่วนเราผูกมัดกันเกินไปหรือเปล่า",
-            ),
+            _make_advice_for_signal(too_much_coupling),
             AdviceForSignal(
                 title="ใช้ Modular Monolith แยกระบบใหญ่ออกเป็นระบบย่อย ๆ ตามส่วนงาน",
                 short_description="abc",

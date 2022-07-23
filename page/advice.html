@@ -1,4 +1,8 @@
 {% extends "template.html" %}
 {% block content %}
-  <p>{{ content }}</p>
+  {{ super() }}
+  <h1 class="color-primary">{{ title }}</h1>
+  {% for paragraph in paragraphs %}
+    <p class="color-secondary">{{ paragraph }}</p>
+  {% endfor %}
 {% endblock %}

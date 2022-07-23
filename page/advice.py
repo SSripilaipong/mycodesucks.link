@@ -14,4 +14,4 @@ class AdvicePage(TemplateBase):
         return cls(Environment(loader=FileSystemLoader('page')).get_template("advice.html"))
 
     def render(self, advice: Advice) -> str:
-        return self._template.render(content=", ".join([advice.title, advice.short_description, advice.content]))
+        return self._template.render(paragraphs=advice.paragraphs, title=advice.title)

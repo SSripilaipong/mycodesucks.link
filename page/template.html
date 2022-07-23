@@ -21,20 +21,20 @@
           color: grey;
       }
 
-      .content-secondary {
+      .content-block {
           font-size: 2rem;
       }
 
-      .signal-header {
+      .content-header {
           font-size: 2rem;
       }
 
       @media only screen and (max-width: 992px) {
-          .content-secondary {
+          .content-block {
               font-size: 1rem;
           }
 
-          .signal-header {
+          .content-header {
               font-size: 1rem;
           }
       }
@@ -57,8 +57,11 @@
 <br>
 <div class="container-fluid d-flex justify-content-start">
   <div class="d-none d-sm-none d-lg-inline" style="width: 12.5%">&nbsp;</div>
-  {% block content %}
-  {% endblock %}
+  <div class="content-block container-fluid">
+    {% block content %}
+    {% endblock %}
+  </div>
+  <div class="d-none d-sm-none d-lg-inline" style="width: 12.5%">&nbsp;</div>
 </div>
 <br>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

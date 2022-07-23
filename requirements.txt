@@ -1,2 +1,2 @@
-lambler==0.0.5
+lambler==0.0.6
 Jinja2==3.1.2

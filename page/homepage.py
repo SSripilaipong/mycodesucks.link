@@ -2,8 +2,7 @@ from dataclasses import dataclass
 from typing import List
 
 import jinja2
-from jinja2 import BaseLoader, Environment
-from lambler.content import Content
+from jinja2 import Environment, FileSystemLoader
 from lambler.template import TemplateBase
 
 
@@ -25,8 +24,8 @@ class HomepageTemplate(TemplateBase):
         self._template = template
 
     @classmethod
-    def load(cls, page: str = Content("page/homepage.html")) -> 'HomepageTemplate':
-        return cls(Environment(loader=BaseLoader()).from_string(page))
+    def load(cls) -> 'HomepageTemplate':
+        return cls(Environment(loader=FileSystemLoader('page')).get_template("homepage.html"))
 
     def render(self, signals: List[Signal]) -> str:
         return self._template.render(signals=signals)

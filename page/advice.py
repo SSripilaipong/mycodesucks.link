@@ -1,15 +1,17 @@
+import jinja2
+from jinja2 import FileSystemLoader, Environment
 from lambler.template import TemplateBase
 
 from content.advice import Advice
 
 
 class AdvicePage(TemplateBase):
-    def __init__(self, template: str):
+    def __init__(self, template: jinja2.Template):
         self._template = template
 
     @classmethod
     def load(cls) -> 'AdvicePage':
-        return cls("<html><body>{content}</body></html>")
+        return cls(Environment(loader=FileSystemLoader('page')).get_template("advice.html"))
 
     def render(self, advice: Advice) -> str:
-        return self._template.format(content=", ".join([advice.title, advice.short_description, advice.content]))
+        return self._template.render(content=", ".join([advice.title, advice.short_description, advice.content]))

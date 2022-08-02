@@ -4,7 +4,7 @@ from lambler.http import HttpApi, HtmlResponse, Param
 from lambler.template import Template
 
 from content.advice import advice_mapper, too_much_coupling, Advice, separate_layers_with_clean, \
-    break_monolith_into_modules
+    break_monolith_into_modules, testcase_before_refactor
 from page.advice import AdvicePage
 from page.home import HomeTemplate, Signal, AdviceForSignal
 
@@ -25,11 +25,7 @@ def home(template: HomeTemplate = Template()):
             _make_advice_for_signal(separate_layers_with_clean),
         ]),
         Signal(title="มีฟังก์ชันที่ซับซ้อนมาก ๆ ไม่มีใครเข้าใจ คนเขียนลาออกไปแล้ว 😭", advice_list=[
-            AdviceForSignal(
-                title="สร้าง testcase ก่อน refactor ทุกครั้ง",
-                short_description="abc",
-                link="/advice/62d96bcf5a5819259704414f-สร้าง_testcase_ก่อน_refactor_ทุกครั้ง",
-            ),
+            _make_advice_for_signal(testcase_before_refactor),
             AdviceForSignal(
                 title="จะ refactor ทั้งที ต้องทำให้คนอื่นเข้าใจด้วย โดยใช้ Domain-Driven Design",
                 short_description="abc",

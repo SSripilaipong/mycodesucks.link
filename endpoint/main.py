@@ -4,7 +4,7 @@ from lambler.http import HttpApi, HtmlResponse, Param
 from lambler.template import Template
 
 from content.advice import advice_mapper, too_much_coupling, Advice, separate_layers_with_clean, \
-    break_monolith_into_modules, testcase_before_refactor
+    break_monolith_into_modules, testcase_before_refactor, refactor_should_use_ddd
 from page.advice import AdvicePage
 from page.home import HomeTemplate, Signal, AdviceForSignal
 
@@ -26,12 +26,7 @@ def home(template: HomeTemplate = Template()):
         ]),
         Signal(title="มีฟังก์ชันที่ซับซ้อนมาก ๆ ไม่มีใครเข้าใจ คนเขียนลาออกไปแล้ว 😭", advice_list=[
             _make_advice_for_signal(testcase_before_refactor),
-            AdviceForSignal(
-                title="จะ refactor ทั้งที ต้องทำให้คนอื่นเข้าใจด้วย โดยใช้ Domain-Driven Design",
-                short_description="abc",
-                link="/advice/62d96bda5a58192597044150-จะ_refactor_ทั้งที_ต้องทำให้คนอื่นเข้าใจด้วย_"
-                     "โดยใช้_Domain_Driven_Design",
-            ),
+            _make_advice_for_signal(refactor_should_use_ddd),
             AdviceForSignal(
                 title="document เหตุผลการ refactor แต่ละครั้งเอาไว้ ช่วยให้คนอื่นเข้าใจง่ายขึ้น",
                 short_description="abc",

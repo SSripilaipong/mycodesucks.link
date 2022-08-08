@@ -12,6 +12,11 @@ class Video:
     embed_url: str
 
 
+# noinspection PyPep8Naming
+def YoutubeVideo(embed_key: str) -> Video:
+    return Video(f"https://www.youtube.com/embed/{embed_key}")
+
+
 @dataclass
 class Advice:
     id_: str

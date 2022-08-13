@@ -3,8 +3,8 @@ from http import HTTPStatus
 from lambler.http import HttpApi, HtmlResponse, Param
 from lambler.template import Template
 
-from content.advice import advice_mapper, too_much_coupling, Advice, separate_layers_with_clean, \
-    break_monolith_into_modules, testcase_before_refactor, refactor_should_use_ddd
+from content import advice
+from content.advice import advice_mapper, Advice
 from page.advice import AdvicePage
 from page.home import HomeTemplate, Signal, AdviceForSignal
 
@@ -20,42 +20,38 @@ def _make_advice_for_signal(advice: Advice) -> AdviceForSignal:
 def home(template: HomeTemplate = Template()):
     signals = [
         Signal(title="เปลี่ยนโค้ดนิดหน่อย ที่อื่นพัง ต้องแก้ตามอีก 10 ที่ เหนื่อย!", advice_list=[
-            _make_advice_for_signal(too_much_coupling),
-            _make_advice_for_signal(break_monolith_into_modules),
-            _make_advice_for_signal(separate_layers_with_clean),
+            _make_advice_for_signal(advice.too_much_coupling),
+            _make_advice_for_signal(advice.break_monolith_into_modules),
+            _make_advice_for_signal(advice.separate_layers_with_clean),
         ]),
         Signal(title="มีฟังก์ชันที่ซับซ้อนมาก ๆ ไม่มีใครเข้าใจ คนเขียนลาออกไปแล้ว 😭", advice_list=[
-            _make_advice_for_signal(testcase_before_refactor),
-            _make_advice_for_signal(refactor_should_use_ddd),
-            AdviceForSignal(
-                title="document เหตุผลการ refactor แต่ละครั้งเอาไว้ ช่วยให้คนอื่นเข้าใจง่ายขึ้น",
-                short_description="abc",
-                link="/advice/62d96be55a58192597044151-document_เหตุผลการ_refactor_แต่ละครั้งเอาไว้_"
-                     "ช่วยให้คนอื่นเข้าใจง่ายขึ้น",
-            ),
+            _make_advice_for_signal(advice.testcase_before_refactor),
+            _make_advice_for_signal(advice.refactor_should_use_ddd),
+            # AdviceForSignal(
+            #     title="document เหตุผลการ refactor แต่ละครั้งเอาไว้ ช่วยให้คนอื่นเข้าใจง่ายขึ้น",
+            #     short_description="abc",
+            #     link="/advice/62d96be55a58192597044151-document_เหตุผลการ_refactor_แต่ละครั้งเอาไว้_"
+            #          "ช่วยให้คนอื่นเข้าใจง่ายขึ้น",
+            # ),
         ]),
         Signal(title="ฝั่ง business พูดอย่างนึง ในโค้ดเขียนอีกอย่าง งง!", advice_list=[
-            AdviceForSignal(
-                title="Domain-Driven Design เขียนโค้ดให้เหมือนเวลาคุยกัน",
-                short_description="abc",
-                link="/advice/62d96be55a58192597044151-Domain_Driven_Design_เขียนโค้ดให้เหมือนเวลาคุยกัน",
-            ),
+            _make_advice_for_signal(advice.ddd_for_communication),
             AdviceForSignal(
                 title="Event Storming Workshop ให้ dev และ business มองภาพงานในมุมเดียวกัน",
                 short_description="abc",
                 link="/advice/62d96be55a58192597044151-Event_Storming_Workshop_ให้_dev_และ_business_"
                      "มองภาพงานในมุมเดียวกัน ",
             ),
-            AdviceForSignal(
-                title="อธิบายงานด้วย Story อย่าสั่งงานด้วย requirement",
-                short_description="abc",
-                link="/advice/62d96be55a58192597044151-อธิบายงานด้วย_Story_อย่าสั่งงานด้วย_requirement",
-            ),
-            AdviceForSignal(
-                title="ทำความเข้าใจสิ่งที่ business ต้องการจริง ๆ ด้วย Impact Mapping",
-                short_description="abc",
-                link="/advice/62d96be55a58192597044151-ทำความเข้าใจสิ่งที่_business_ต้องการจริง_ๆ_ด้วย_Impact_Mapping",
-            ),
+            # AdviceForSignal(
+            #     title="อธิบายงานด้วย Story อย่าสั่งงานด้วย requirement",
+            #     short_description="abc",
+            #     link="/advice/62d96be55a58192597044151-อธิบายงานด้วย_Story_อย่าสั่งงานด้วย_requirement",
+            # ),
+            # AdviceForSignal(
+            #     title="ทำความเข้าใจสิ่งที่ business ต้องการจริง ๆ ด้วย Impact Mapping",
+            #     short_description="abc",
+            #     link="/advice/62d96be55a58192597044151-ทำความเข้าใจสิ่งที่_business_ต้องการจริง_ๆ_ด้วย_Impact_Mapping",
+            # ),
         ]),
         Signal(title="โค้ดเราเขียน Testcase ยากมากกก ไม่อยากเขียนแล้ว", advice_list=[
             AdviceForSignal(

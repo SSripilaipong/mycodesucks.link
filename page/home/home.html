@@ -1,17 +1,12 @@
 {% extends "template.html" %}
 {% block content %}
   {{ super() }}
-  <h1 class="color-primary">สัญญาณของโค้ดไม่มีคุณภาพ</h1>
-  <p class="color-secondary">ปกติเราจะมองว่า Bug เป็นตัวร้ายหลักของการสร้าง software แต่จริง ๆ
-    แล้วสิ่งที่เป็นต้นตอของปัญหาหลาย ๆ อย่าง
-    ที่หลายคนอาจจะมองข้ามไปคือคุณภาพของโค้ด</p>
-  <p class="color-secondary">โค้ดที่มีคุณภาพดี ทำให้เราทำงานสะดวก ทำงานร่วมกับคนอื่นได้ง่าย หา Bug
-    ได้รวดเร็ว<br>ในทางตรงกันข้าม
-    โค้ดที่ไม่มีคุณภาพก็จะสร้างปัญหามากมายให้กับทีมได้เช่นกัน</p>
-  <p class="color-secondary">เว็บนี้ได้รวบรวม "สัญญาณ" ที่อาจจะเป็นตัวบอกว่าโค้ด <i>หรือทีม</i>
-    ของคุณกำลังมีปัญหาอยู่ มาให้ลองเช็คกัน
-    พร้อมกับ video
-    และบทความ ที่อาจจะช่วยแก้ปัญหาแต่ละเรื่องได้เอาไว้ให้แล้ว</p>
+  <div class="color-secondary ml-5 ml-lg-5 mt-5 mt-lg-5 mb-5 mb-lg-5 gap-lg-5 gap-5"
+       style="font-size: 2rem">
+    <p>Bug เป็นแค่สัญญาณหนึ่งที่สะท้อนปัญหา ลึกลงไปในวิธีการทำงานของเรา</p>
+    <p>...แล้วเดี๋ยวนี้ ยังมีใครพูดถึง "ความสุข" ในการทำงานอยู่ไหมนะ?</p>
+  </div>
+  <p>ลองมาดูปัญหาที่เจอบ่อย ๆ และคำแนะนำเล็ก ๆ น้อย ๆ ที่อาจจะช่วยคุณได้</p>
   <div id="signal-list">
     {% for signal in signals %}
       <div class="card">
@@ -31,7 +26,7 @@
               {% for advice in signal.advice_list %}
                 <li class="list-group-item"><a style="color: coral"
                                                href="{{ advice.link }}">▸ {{ advice.title }}</a>
-                  <div class="color-secondary">{{ advice.short_description }}</div>
+                  <div>{{ advice.short_description }}</div>
                 </li>
               {% endfor %}
             </ul>

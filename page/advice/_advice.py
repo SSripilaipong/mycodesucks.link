@@ -24,9 +24,8 @@ def make_content(c: Union[Paragraph, Video]) -> str:
     if isinstance(c, Paragraph):
         return f'<p class="color-secondary">{c.text}</p>'
     elif isinstance(c, Video):
-        return (f'<div class="video-content"><div class="embed-responsive '
-                f'embed-responsive-16by9"><iframe class="embed-responsive-item" '
-                f'src="{c.embed_url}" title="YouTube video '
-                f'player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; '
-                f'picture-in-picture" allowfullscreen></iframe></div></div>')
+        return (
+            f'<div class="video-content"><div class="ratio ratio-16x9"><iframe src="{c.embed_url}" title="YouTube '
+            f'video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; '
+            f'picture-in-picture" allowfullscreen></iframe></div></div>')
     raise NotImplementedError()

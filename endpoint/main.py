@@ -36,12 +36,7 @@ def home(template: HomeTemplate = Template()):
         ]),
         Signal(title="ฝั่ง business พูดอย่างนึง ในโค้ดเขียนอีกอย่าง งง!", advice_list=[
             _make_advice_for_signal(advice.ddd_for_communication),
-            AdviceForSignal(
-                title="Event Storming Workshop ให้ dev และ business มองภาพงานในมุมเดียวกัน",
-                short_description="abc",
-                link="/advice/62d96be55a58192597044151-Event_Storming_Workshop_ให้_dev_และ_business_"
-                     "มองภาพงานในมุมเดียวกัน ",
-            ),
+            _make_advice_for_signal(advice.event_storming_for_unity),
             # AdviceForSignal(
             #     title="อธิบายงานด้วย Story อย่าสั่งงานด้วย requirement",
             #     short_description="abc",
